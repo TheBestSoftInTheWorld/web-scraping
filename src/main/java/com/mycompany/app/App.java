@@ -1,7 +1,5 @@
 package com.mycompany.app;
 
-import java.io.File;
-import java.net.URL;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -140,9 +138,6 @@ public class App {
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);
-
-			URL resource = App.class.getClassLoader().getResource("");
-			System.out.println(resource.getFile());
 
 			// StreamResult result = new StreamResult(new File("C:/XML/file.xml"));
 			StreamResult result = new StreamResult(System.out);
