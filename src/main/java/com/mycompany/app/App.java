@@ -31,8 +31,9 @@ public class App {
 	final static String searchUrl = "http://a123456789z.com/";;
 
 	public static List<URLContent> url = new LinkedList<>();
-
+	
 	public static void main(String[] args) {
+				
 		WebClient client = new WebClient();
 		client.getOptions().setCssEnabled(false);
 		client.getOptions().setJavaScriptEnabled(false);
