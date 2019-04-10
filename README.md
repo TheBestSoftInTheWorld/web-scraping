@@ -1,5 +1,5 @@
 # web-scraping
 To run project: mvn -q exec:java -e -Dexec.mainClass=com.mycompany.app.App
 
-instruction:
+Instruction:
 https://github.com/TheBestSoftInTheWorld/web-scraping/wiki
