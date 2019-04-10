@@ -27,13 +27,11 @@ import org.w3c.dom.Element;
  * Hello world!
  *
  */
-public class App {
+class App {
 	final static String searchUrl = "http://a123456789z.com/";;
 
-	public static List<URLContent> url = new LinkedList<>();
-	
 	public static void main(String[] args) {
-				
+
 		WebClient client = new WebClient();
 		client.getOptions().setCssEnabled(false);
 		client.getOptions().setJavaScriptEnabled(false);
@@ -44,11 +42,10 @@ public class App {
 			System.out.println("title: " + page.getTitleText());
 			DomNodeList<DomElement> ss = page.getElementsByTagName("a");
 
-			ss.forEach((temp) -> {
-				generateList(temp.asText(), temp.getAttribute("href"));
-			});
+			URLContent u = new URLContent();
+			List<URLContent> listOfURLContent = u.generateList(searchUrl, ss);
 
-			generateXML();
+			generateXML(listOfURLContent);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -56,7 +53,7 @@ public class App {
 
 	}
 
-	private static void generateXML() {
+	private static void generateXML(List<URLContent> listOfURLContent) {
 		try {
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
@@ -66,7 +63,7 @@ public class App {
 			Element rootElement = doc.createElement("URL");
 			doc.appendChild(rootElement);
 
-			Iterator itr = url.iterator();
+			Iterator itr = listOfURLContent.iterator();
 
 			int a = 0;
 			int b = 0;
@@ -149,26 +146,6 @@ public class App {
 		} catch (TransformerException tfe) {
 			tfe.printStackTrace();
 		}
-	}
-
-	private static void generateList(String text, String href) {
-
-		if (href.startsWith("http") || href.startsWith("www")) {
-
-			if (href.startsWith(searchUrl)) {
-
-				url.add(new URLContent(href, text, 1));
-
-			} else {
-				url.add(new URLContent(href, text, 2));
-			}
-
-		} else if (text.isEmpty() || text == null) {
-
-		} else {
-			url.add(new URLContent(href, text, 3));
-		}
-
 	}
 
 }
